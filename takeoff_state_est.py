@@ -11,14 +11,16 @@ from cflib.positioning.motion_commander import MotionCommander
 logging.basicConfig(level=logging.ERROR)
 
 URI = uri_helper.uri_from_env(default='radio://0/80/2M/A7A7A7A7A7')
-DEFAULT_HEIGHT = 0.2
+DEFAULT_HEIGHT = 0.5
 
+prev_error = 0
+integral_error = 0
 
 #------------------------------------------------------------------#
 
 
 def log_pos_callback(timestamp, data, logconf):
-    print('[%d][%s]: %s' % (timestamp, logconf.name, data))
+    # print('[%d][%s]: %s' % (timestamp, logconf.name, data))
 
     global Z
 
@@ -26,24 +28,39 @@ def log_pos_callback(timestamp, data, logconf):
 
 
 
-
 def main(scf):
 
-    kp = -0.1
-    ki = -0.
-    kd = -0.
+    kp = 2.
+    ki = 0.001
+    kd = 1.
 
-    with MotionCommander(scf, default_height=DEFAULT_HEIGHT) as mc:
+    global prev_error 
+    global integral_error 
+
+    with MotionCommander(scf, default_height=0.1) as mc:
         
+        # endtime = time.time() + 10
+
+        # while time.time() < endtime:
         while True:
 
-            error = DEFAULT_HEIGHT - Z
+            error = 0.5 - Z
 
-            velocity = kp*error + ki*error + kd*error
+            print(f"Error: {error}m")
 
-            print(velocity)
+            velocity = kp*error + ki*integral_error + kd*(error - prev_error)
+
+            print(f"Velocity: {velocity}m/s")
+
+            # if velocity < 0:
+            #     velocity = 0
 
             mc.start_linear_motion(0, 0, velocity)
+
+            prev_error = error
+            integral_error += prev_error
+
+            print("-------------")
 
             time.sleep(0.1)
 
