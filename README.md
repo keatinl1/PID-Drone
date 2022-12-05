@@ -19,7 +19,7 @@ I forced the system into oscillation by slowly increasing the proportional gain 
 Figure 2
 </p>
 
-Using the equations and taking K_u as 2.2 and Pu as 2.2 seconds. An estimate could be made at the gains.
+Using the equations and taking K_u as 2.2 and P_u as 2.2 seconds. An estimate could be made at the gains.
 
 This estimate was then refined and yielded the response in Figure 3 from the system.
 
