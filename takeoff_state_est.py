@@ -1,5 +1,6 @@
 import logging
 import time 
+import csv
 
 import cflib.crtp
 from cflib.utils import uri_helper
@@ -16,6 +17,8 @@ DEFAULT_HEIGHT = 0.5
 prev_error = 0
 integral_error = 0
 
+Z_list = []
+
 #------------------------------------------------------------------#
 
 
@@ -30,21 +33,21 @@ def log_pos_callback(timestamp, data, logconf):
 
 def main(scf):
 
-    kp = 2.
+    kp = 1.1
     ki = 0.001
-    kd = 1.
+    kd = 0.275
 
     global prev_error 
     global integral_error 
 
     with MotionCommander(scf, default_height=0.1) as mc:
         
-        # endtime = time.time() + 10
+        endtime = time.time() + 10
 
-        # while time.time() < endtime:
-        while True:
+        while time.time() < endtime:
+        # while True:
 
-            error = 0.5 - Z
+            error = 0.3 - Z
 
             print(f"Error: {error}m")
 
@@ -62,7 +65,11 @@ def main(scf):
 
             print("-------------")
 
+            Z_list.append(Z)
+
             time.sleep(0.1)
+
+        mc.stop
 
 
 
@@ -84,3 +91,8 @@ if __name__ == '__main__':
         main(scf)
         
         logconf.stop()
+
+        with open('file.csv', 'w', newline='') as myfile:
+            wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
+            wr.writerow(Z_list)
+            
