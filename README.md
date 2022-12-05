@@ -1,5 +1,5 @@
 # PID-drone
-Controlling the hovering of a crazyflie drone using PID
+Controlling the hovering of a crazyflie drone using PID with a Z-ranger.
 
 I wanted to try control the hover height of a crazyflie drone myself through a PID controller.
 
