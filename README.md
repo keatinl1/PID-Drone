@@ -1,7 +1,7 @@
 # PID-drone
 Controlling the hovering of a crazyflie drone using PID with a Z-ranger.
 
-![alt text]([https://media.unmannedtechshop.co.uk/wp-content/uploads/1970/01/18123303/products-Crazyflie_Prototyping_expansion_board3__03169.1528900636.1280.1280-250x250.jpg](https://www.researchgate.net/profile/Wolfgang-Hoenig/publication/317751508/figure/fig1/AS:818008721207297@1572039885658/Our-target-platform-Bitcraze-Crazyflie-20-quadcopter-left-which-can-be-controlled.jpg))
+![alt text](https://www.researchgate.net/profile/Wolfgang-Hoenig/publication/317751508/figure/fig1/AS:818008721207297@1572039885658/Our-target-platform-Bitcraze-Crazyflie-20-quadcopter-left-which-can-be-controlled.jpg))
 
 I wanted to try control the hover height of a crazyflie drone myself through a PID controller.
 
