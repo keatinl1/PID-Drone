@@ -31,6 +31,6 @@ Figure 3
 It is clear that using a tuning method is superior to blindly tuning.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/keatinl1/PID-drone/master/images/drone.gif">
+  <img width="512" height="512"  src="https://raw.githubusercontent.com/keatinl1/PID-drone/master/images/drone.gif">
 </p>
 
