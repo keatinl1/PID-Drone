@@ -1,62 +1,49 @@
 import logging
 import time 
 import csv
-
 import cflib.crtp
+
 from cflib.utils import uri_helper
 from cflib.crazyflie import Crazyflie
 from cflib.crazyflie.log import LogConfig
 from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
 from cflib.positioning.motion_commander import MotionCommander
 
+from controller import PID
+
 logging.basicConfig(level=logging.ERROR)
 
-URI = uri_helper.uri_from_env(default='radio://0/80/2M/A7A7A7A7A7')
+URI = uri_helper.uri_from_env(default='radio://0/80/2M/E7E7E7E7E7')
 DEFAULT_HEIGHT = 0.5
-
-prev_error = 0
-integral_error = 0
-
-Z_list = []
-
-#------------------------------------------------------------------#
 
 
 def log_pos_callback(timestamp, data, logconf):
-    # print('[%d][%s]: %s' % (timestamp, logconf.name, data))
-
     global Z
-
     Z = data['range.zrange'] / 1000 #  z ranger is in mm for some reason
-
 
 
 def main(scf):
 
-    kp = 1.1
-    ki = 0.001
-    kd = 0.275
+    error = 0
+    prev_error = 0
+    integral_error = 0
 
-    global prev_error 
-    global integral_error 
+    Z_list = []
 
     with MotionCommander(scf, default_height=0.1) as mc:
         
         endtime = time.time() + 10
 
         while time.time() < endtime:
-        # while True:
 
             error = 0.3 - Z
 
             print(f"Error: {error}m")
 
-            velocity = kp*error + ki*integral_error + kd*(error - prev_error)
+            controller = PID(error, integral_error, prev_error)
+            velocity = controller.get_velocity()
 
             print(f"Velocity: {velocity}m/s")
-
-            # if velocity < 0:
-            #     velocity = 0
 
             mc.start_linear_motion(0, 0, velocity)
 
@@ -70,7 +57,8 @@ def main(scf):
             time.sleep(0.1)
 
         mc.stop
-
+    
+    return Z_list
 
 
 if __name__ == '__main__':
@@ -87,12 +75,11 @@ if __name__ == '__main__':
         logconf.data_received_cb.add_callback(log_pos_callback)
 
         logconf.start()
-        
-        main(scf)
-        
+
+        output_list = main(scf)
+
         logconf.stop()
 
         with open('file.csv', 'w', newline='') as myfile:
             wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
-            wr.writerow(Z_list)
-            
+            wr.writerow(output_list)
