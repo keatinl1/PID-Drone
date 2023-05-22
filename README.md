@@ -14,7 +14,7 @@ $~~~~~~~~~~$
 $~~~~~~~~~~$
 
 ## Explanation
-I wanted to try control the hover height of a crazyflie drone myself through a PID controller.
+I wanted to try control the hover height of a crazyflie drone with a PID controller.
 
 I tried it myself firstly, just tuning randomly until I found something that somewhat worked, see figure 1.
 
