@@ -47,4 +47,4 @@ $~~~~~~~~~~$
 
 ## A note on figure 3
 
-When figure 3 is analysed, it appears as though there is destabilisation occuring after steady state was achieved. In future, the proportional gain should be reduced to avoid the controller over reacting to small error signals and destabilising the system. The tradeoff in that case is that the rise time would be increased.
+When figure 3 is analysed, it appears as though there is destabilisation occuring after steady state was achieved. In future, the proportional gain should be reduced to avoid the controller overreacting to small error signals and destabilising the system. This action would also reduce overshoot but the trade off is that the rise time would increase.
