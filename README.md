@@ -1,6 +1,19 @@
 # PID-drone
 Controlling the hovering of a crazyflie drone using PID with a Z-ranger.
 
+Watch the GIF for a demo and scroll down for methodology
+
+$~~~~~~~~~~$
+
+## Demo
+
+<p align="center">
+  <img width="512" height="512"  src="https://raw.githubusercontent.com/keatinl1/PID-drone/master/images/drone.gif">
+</p>
+
+$~~~~~~~~~~$
+
+## Explanation
 I wanted to try control the hover height of a crazyflie drone myself through a PID controller.
 
 I tried it myself firstly, just tuning randomly until I found something that somewhat worked, see figure 1.
@@ -30,9 +43,7 @@ Figure 3
 
 It is clear that using a tuning method is superior to blindly tuning.
 
-<p align="center">
-  <img width="512" height="512"  src="https://raw.githubusercontent.com/keatinl1/PID-drone/master/images/drone.gif">
-</p>
+$~~~~~~~~~~$
 
 ## A note on figure 3
 
