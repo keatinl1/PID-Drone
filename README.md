@@ -1,7 +1,7 @@
 # PID-drone
 Controlling the hovering of a crazyflie drone using PID with a Z-ranger.
 
-Watch the GIF for a demo and scroll down for methodology
+Watch the GIF for a demo and scroll down for methodology 🚁
 
 $~~~~~~~~~~$
 
