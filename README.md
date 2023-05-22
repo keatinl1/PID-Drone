@@ -23,7 +23,7 @@ Using the equations and taking K_u as 2.2 and P_u as 2.2 seconds. An estimate co
 
 This estimate was then refined and yielded the response in Figure 3 from the system.
 
-![alt text](https://raw.githubusercontent.com/keatinl1/PID-Drone/master/images/ziegler.png)
+![alt text](https://raw.githubusercontent.com/keatinl1/PID-Drone/master/images/ziegler_0.png)
 <p align="center">
 Figure 3
 </p>
